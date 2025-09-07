@@ -58,6 +58,9 @@
     .icon svg{width:16px; height:16px}
     .menu-btn{display:none; background:none; border:0; color:inherit; cursor:pointer}
     .menu-btn svg{width:28px; height:28px}
+    .menu-btn .close{display:none}
+    .menu-btn[aria-expanded="true"] .close{display:inline}
+    .menu-btn[aria-expanded="true"] .hamburger{display:none}
 
     /* Hero */
     .hero{padding: clamp(48px, 8vw, 96px) 0}
@@ -149,8 +152,11 @@
 
       <nav aria-label="Κύρια Πλοήγηση">
         <button class="menu-btn" aria-expanded="false" aria-label="Μενού">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <svg class="hamburger" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <svg class="close" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 6l12 12M6 18L18 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
           </svg>
         </button>
         <ul>
@@ -377,9 +383,23 @@
     const btn=document.querySelector('.menu-btn');
     const nav=document.querySelector('header nav');
     if(!btn||!nav) return;
+    const links=nav.querySelectorAll('a');
+    function closeMenu(){
+      nav.classList.remove('open');
+      btn.setAttribute('aria-expanded','false');
+      btn.setAttribute('aria-label','Μενού');
+    }
     btn.addEventListener('click',()=>{
       const open=nav.classList.toggle('open');
       btn.setAttribute('aria-expanded',open);
+      btn.setAttribute('aria-label', open ? 'Κλείσιμο' : 'Μενού');
+    });
+    links.forEach(link=>link.addEventListener('click',closeMenu));
+    document.addEventListener('click',e=>{
+      if(nav.classList.contains('open')&&!nav.contains(e.target)) closeMenu();
+    });
+    document.addEventListener('keydown',e=>{
+      if(e.key==='Escape') closeMenu();
     });
   })();
 </script>
