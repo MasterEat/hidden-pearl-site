@@ -63,15 +63,32 @@
     .menu-btn[aria-expanded="true"] .hamburger{display:none}
 
     /* Hero */
-    .hero{padding: clamp(48px, 8vw, 96px) 0}
-    .hero .wrap{display:grid; grid-template-columns: 1.2fr 1fr; gap:32px; align-items:center}
-    .hero h1{font-size: clamp(28px, 4.4vw, 48px); margin:0 0 12px 0}
-    .hero p{font-size: clamp(16px, 1.4vw, 18px); color:var(--muted); margin:0 0 16px 0}
-    .cta{display:inline-flex; align-items:center; gap:10px; padding:14px 18px; background:var(--brand); color:var(--brand-text); border-radius:12px; box-shadow: var(--shadow); font-weight:700; outline:0; transition: background .2s, color .2s}
+    .hero{
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:70vh;
+      background:url("images/hiddenpearl1.jpg") center/cover no-repeat;
+      color:#fff;
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.2));
+    }
+    .hero-content{
+      position:relative;
+      z-index:1;
+      text-align:center;
+      max-width:640px;
+    }
+    .hero h1{font-size: clamp(28px, 4.4vw, 48px); margin:0 0 12px 0; text-shadow:0 1px 4px rgba(0,0,0,.4)}
+    .hero p{font-size: clamp(16px, 1.4vw, 18px); margin:0 0 16px 0; color:rgba(255,255,255,.9); text-shadow:0 1px 4px rgba(0,0,0,.4)}
+    .cta{display:inline-flex; align-items:center; gap:10px; padding:14px 18px; background:var(--brand); color:var(--brand-text); border-radius:12px; box-shadow: var(--shadow); font-weight:700; outline:0; transition: background .2s, color .2s; position:relative; z-index:1}
     .cta:hover{background:var(--bg); color:var(--brand); outline:1px solid #000}
     .cta:focus{outline:0; box-shadow:0 0 0 4px var(--ring)}
-    .hero-card{background:var(--card); border-radius: var(--radius); box-shadow: var(--shadow); overflow:hidden; width:600px; max-width:100%; aspect-ratio:1/1}
-    .hero-card img{display:block; width:100%; height:100%; object-fit:cover; transition:opacity 1s}
 
     /* Sections */
     section{padding: 56px 0}
@@ -124,9 +141,7 @@
 
     /* Responsive */
     @media (max-width: 920px){
-      .hero .wrap{grid-template-columns: 1fr}
       .features{grid-template-columns: 1fr 1fr}
-      .hero-card{order:-1}
     }
     @media (max-width: 640px){
       nav{margin-left:auto}
@@ -184,18 +199,13 @@
 
   <!-- HERO -->
   <main id="home" class="hero">
-    <div class="container wrap">
-      <div>
-        <h1>Ένα «κρυφό μαργαριτάρι» στην Αθήνα</h1>
-        <p>Μοντέρνο, φωτεινό διαμέρισμα με προσεγμένο design, ιδανικό για ζευγάρια ή solo ταξιδιώτες. Μερικά βήματα από συγκοινωνίες, καφέ και αγορές.</p>
-        <a id="ctaBooking" class="cta" href="https://hiddenpearldafnis.setmore.com" target="_blank" rel="noopener">
-          Κλείσε Διαμονή
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
-      <div class="hero-card">
-        <img id="heroImage" src="images/hiddenpearl1.jpg" alt="Κομψό καθιστικό του Hidden Pearl Dafnis" width="600" height="600" />
-      </div>
+    <div class="hero-content container">
+      <h1>Ένα «κρυφό μαργαριτάρι» στην Αθήνα</h1>
+      <p>Μοντέρνο, φωτεινό διαμέρισμα με προσεγμένο design, ιδανικό για ζευγάρια ή solo ταξιδιώτες. Μερικά βήματα από συγκοινωνίες, καφέ και αγορές.</p>
+      <a id="ctaBooking" class="cta" href="https://hiddenpearldafnis.setmore.com" target="_blank" rel="noopener">
+        Κλείσε Διαμονή
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
     </div>
   </main>
 
