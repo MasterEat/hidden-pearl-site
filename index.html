@@ -21,6 +21,7 @@
     :root{
       --bg:#f2efe4;          /* page background */
       --brand:#492fde;       /* header & footer */
+      --brand-text:#f2efe4;  /* header & footer text */
       --text:#1f2937;        /* slate-800 */
       --muted:#6b7280;       /* slate-500 */
       --card:#ffffff;
@@ -42,7 +43,8 @@
       top:0;
       left:0;
       right:0;
-      background: #492fde;
+      background: var(--brand);
+      color: var(--brand-text);
       box-shadow: none;
       backdrop-filter: none;
     }
@@ -107,7 +109,7 @@
     .map-wrap iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
 
     /* Footer */
-    footer{background: var(--brand); padding: 36px 0; margin-top:56px}
+    footer{background: var(--brand); color: var(--brand-text); padding: 36px 0; margin-top:56px}
     .foot{display:flex; gap:16px; align-items:center; justify-content:space-between; flex-wrap:wrap}
     .foot small{opacity:.8}
     footer .contact{flex:1}
