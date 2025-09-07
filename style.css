@@ -1,1 +1,260 @@
+:root {
+  --drawer-width: 300px;
+  --drawer-bg: #fff;
+  --accent: #84858c;
+  --overlay-bg: rgba(0, 0, 0, 0.5);
+}
+
+body {
+  background: #f2efe4;
+}
+
+.site-nav {
+  display: block;
+}
+
+.nav-toggle {
+  display: none;
+}
+
+.drawer {
+  display: none;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10000;
+  background: rgba(132, 133, 140, 0.6);
+}
+
+body.scrolled .site-header {
+  background: #84858c;
+}
+
+section[id] {
+  scroll-margin-top: 80px;
+}
+
+@media (max-width: 767px) {
+  .site-nav {
+    display: none;
+  }
+
+  .nav-toggle {
+    display: block;
+    cursor: pointer;
+  }
+
+  /* Parallax effect & scroll lock */
+  body.drawer-open {
+    overflow: hidden;
+    transform: translateX(10px) scale(0.98);
+  }
+
+  /* Drawer wrapper */
+  .drawer {
+    display: block;
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+  }
+  .drawer.is-open {
+    pointer-events: auto;
+  }
+
+  .drawer a,
+  .drawer button {
+    min-height: 44px;
+  }
+
+  /* Overlay */
+  .drawer__overlay {
+    position: absolute;
+    inset: 0;
+    background: var(--overlay-bg);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 9998;
+  }
+  .drawer.is-open .drawer__overlay {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Panel */
+  .drawer__panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--drawer-width);
+    height: 100%;
+    background: var(--drawer-bg);
+    transform: translateX(-100%);
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    z-index: 9999;
+  }
+  .drawer.is-open .drawer__panel {
+    transform: translateX(0);
+  }
+
+  /* Header */
+  .drawer__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .drawer__close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  .drawer__logo {
+    margin: 0 auto;
+    transform: scale(0.9);
+  }
+  .drawer.is-open .drawer__logo {
+    transform: scale(1);
+  }
+
+  /* Navigation */
+  .drawer__nav {
+    flex: 1;
+    overflow-y: auto;
+    margin-top: 1rem;
+  }
+  .drawer__nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .drawer__nav-item {
+    border-bottom: 1px solid #eee;
+  }
+  .drawer__submenu-toggle {
+    width: 100%;
+    padding: 1rem;
+    background: none;
+    border: none;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+  }
+  .drawer__submenu-toggle[aria-expanded="true"],
+  .drawer__submenu-toggle:focus {
+    color: var(--accent);
+  }
+  .drawer__submenu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .drawer__submenu[hidden] {
+    display: none;
+  }
+  .drawer__submenu a {
+    display: block;
+    padding: 0.75rem 1rem 0.75rem 2rem;
+  }
+
+  /* Language switcher */
+  .drawer__lang {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  .drawer__lang-btn img {
+    width: 24px;
+    height: 24px;
+  }
+
+  /* CTA buttons */
+  .drawer__cta {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 1rem 0;
+  }
+  .drawer__cta-btn {
+    background: var(--accent);
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+  }
+
+  /* Footer */
+  .drawer__footer {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .drawer__email {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: inherit;
+  }
+  .drawer__social {
+    display: flex;
+    gap: 0.5rem;
+  }
+  .drawer__social-link {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: inherit;
+  }
+  .drawer__social-link:hover {
+    background: var(--accent);
+    color: #fff;
+  }
+}
+
+@media (max-width: 767px) and (prefers-reduced-motion: no-preference) {
+  body.drawer-open {
+    transition: transform 0.3s ease;
+  }
+  .drawer__overlay {
+    transition: opacity 0.3s ease;
+  }
+  .drawer__panel {
+    transition: transform 0.3s ease;
+  }
+  .drawer__logo {
+    transition: transform 0.3s ease;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .site-header {
+    transition: background-color 0.3s ease;
+  }
+  .drawer.is-open .drawer__logo {
+    animation: drawer-logo-in 0.3s ease forwards;
+  }
+}
+
+@keyframes drawer-logo-in {
+  from {
+    transform: scale(0.9);
+  }
+  to {
+    transform: scale(1);
+  }
+}
 
