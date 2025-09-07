@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Responsive Navigation Skeleton</title>
+</head>
+<body>
+  <!-- Header with desktop navigation and mobile toggle -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="/" class="site-logo">Logo</a>
+      <nav class="site-nav" aria-label="Primary">
+        <ul class="site-nav__list">
+          <li class="site-nav__item"><a href="#">Home</a></li>
+          <li class="site-nav__item"><a href="#">About</a></li>
+          <li class="site-nav__item"><a href="#">Services</a></li>
+          <li class="site-nav__item"><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+      <!-- Hamburger button shown below 768px -->
+      <button class="nav-toggle" aria-controls="drawer" aria-expanded="false" aria-label="Open menu">
+        <span class="nav-toggle__icon" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Off-canvas drawer -->
+  <div class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer__overlay" tabindex="-1" data-drawer-close></div>
+    <aside class="drawer__panel" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+      <header class="drawer__header">
+        <button class="drawer__close" aria-label="Close menu" data-drawer-close>&times;</button>
+        <h2 id="drawerTitle" class="drawer__logo">Logo</h2>
+      </header>
+
+      <nav class="drawer__nav" aria-label="Mobile">
+        <ul class="drawer__nav-list">
+          <li class="drawer__nav-item">
+            <button class="drawer__submenu-toggle" aria-expanded="false">Home</button>
+            <ul class="drawer__submenu">
+              <li><a href="#">Subitem 1</a></li>
+              <li><a href="#">Subitem 2</a></li>
+            </ul>
+          </li>
+          <li class="drawer__nav-item">
+            <button class="drawer__submenu-toggle" aria-expanded="false">About</button>
+            <ul class="drawer__submenu">
+              <li><a href="#">Team</a></li>
+              <li><a href="#">History</a></li>
+            </ul>
+          </li>
+          <li class="drawer__nav-item">
+            <button class="drawer__submenu-toggle" aria-expanded="false">Services</button>
+            <ul class="drawer__submenu">
+              <li><a href="#">Service 1</a></li>
+              <li><a href="#">Service 2</a></li>
+            </ul>
+          </li>
+          <li class="drawer__nav-item"><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Language switcher -->
+      <div class="drawer__lang" aria-label="Language selector">
+        <button class="drawer__lang-btn" aria-label="Greek"><img src="images/flag-gr.png" alt="Greek" /></button>
+        <button class="drawer__lang-btn" aria-label="English"><img src="images/flag-en.png" alt="English" /></button>
+      </div>
+
+      <!-- CTA section -->
+      <div class="drawer__cta" aria-label="Contact options">
+        <a href="#" class="drawer__cta-btn drawer__cta-btn--whatsapp">WhatsApp</a>
+        <a href="#" class="drawer__cta-btn drawer__cta-btn--viber">Viber</a>
+        <a href="#" class="drawer__cta-btn drawer__cta-btn--messenger">Messenger</a>
+      </div>
+
+      <!-- Footer -->
+      <footer class="drawer__footer">
+        <a href="mailto:info@example.com" class="drawer__email">
+          <span class="drawer__email-icon" aria-hidden="true"></span>
+          info@example.com
+        </a>
+        <div class="drawer__social">
+          <a href="#" aria-label="Facebook" class="drawer__social-link drawer__social-link--facebook"></a>
+          <a href="#" aria-label="Instagram" class="drawer__social-link drawer__social-link--instagram"></a>
+        </div>
+      </footer>
+    </aside>
+  </div>
+</body>
+</html>
