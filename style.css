@@ -1,12 +1,12 @@
 :root {
   --drawer-width: 300px;
   --drawer-bg: #fff;
-  --accent: #84858c;
+  --accent: #43D9D7;
   --overlay-bg: rgba(0, 0, 0, 0.5);
 }
 
 body {
-  background: #f2efe4;
+  background: #f1e6d4;
 }
 
 .site-nav {
@@ -25,11 +25,11 @@ body {
   position: sticky;
   top: 0;
   z-index: 10000;
-  background: rgba(132, 133, 140, 0.6);
+  background: rgba(67, 217, 215, 0.6);
 }
 
 body.scrolled .site-header {
-  background: #84858c;
+  background: #43D9D7;
 }
 
 section[id] {
