@@ -129,15 +129,21 @@
     .lb-btn{background:#ffffff; border:0; border-radius:999px; padding:10px 14px; cursor:pointer; font-weight:800}
     .lb-close{position:absolute; top:16px; right:16px; background:#fff; border:0; border-radius:999px; padding:8px 12px; cursor:pointer; font-weight:800}
 
-    /* FAQs */
-    .faqs{display:grid; grid-template-columns:1fr; gap:12px}
-    details{background:var(--card); border-radius:14px; padding:16px 18px; box-shadow: var(--shadow)}
-    summary{font-weight:700; cursor:pointer}
-    details[open]{outline:none}
+      /* FAQs */
+      .faqs{display:grid; grid-template-columns:1fr; gap:12px}
+      details{background:var(--card); border-radius:14px; padding:16px 18px; box-shadow: var(--shadow)}
+      summary{font-weight:700; cursor:pointer}
+      details[open]{outline:none}
 
-    /* Map */
-    .map-wrap{position:relative; padding-top: 45%; border-radius:16px; overflow:hidden; box-shadow: var(--shadow)}
-    .map-wrap iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
+      /* Reviews */
+      .reviews{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+      .review{background:var(--card); padding:18px; border-radius:16px; box-shadow:var(--shadow)}
+      .review .rating{color:#fbbf24; margin:4px 0}
+      .reviews-cta{text-align:center; margin-top:24px}
+
+      /* Map */
+      .map-wrap{position:relative; padding-top: 45%; border-radius:16px; overflow:hidden; box-shadow: var(--shadow)}
+      .map-wrap iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
 
     /* Footer */
     footer{background: var(--brand); color: var(--brand-text); padding: 36px 0; margin-top:56px}
@@ -148,17 +154,19 @@
     footer .social{flex:1; justify-content:flex-end}
 
     /* Responsive */
-    @media (max-width: 920px){
-      .features{grid-template-columns: 1fr 1fr}
-    }
-    @media (max-width: 640px){
-      nav{margin-left:auto}
-      .social{display:none}
-      .menu-btn{display:inline-flex}
-      nav ul{display:none; position:absolute; top:100%; right:0; background:var(--brand); flex-direction:column; gap:10px; padding:10px 14px; border-radius:12px; box-shadow:var(--shadow); margin:8px 0 0 0}
-      nav.open ul{display:flex}
-      .features{grid-template-columns: 1fr}
-    }
+      @media (max-width: 920px){
+        .features{grid-template-columns: 1fr 1fr}
+        .reviews{grid-template-columns:1fr 1fr}
+      }
+      @media (max-width: 640px){
+        nav{margin-left:auto}
+        .social{display:none}
+        .menu-btn{display:inline-flex}
+        nav ul{display:none; position:absolute; top:100%; right:0; background:var(--brand); flex-direction:column; gap:10px; padding:10px 14px; border-radius:12px; box-shadow:var(--shadow); margin:8px 0 0 0}
+        nav.open ul{display:flex}
+        .features{grid-template-columns: 1fr}
+        .reviews{grid-template-columns:1fr}
+      }
   </style>
 </head>
 <body>
@@ -315,6 +323,36 @@
             <li>3 ενήλικες επισκέπτες</li>
           </ul>
         </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="reviews" aria-labelledby="reviewsTitle">
+    <div class="container">
+      <h2 id="reviewsTitle" class="section-title">Κριτικές Πελατών</h2>
+      <div class="reviews">
+        <blockquote class="review">
+          <strong>George K.</strong>
+          <div class="rating" aria-label="5 αστέρια">★★★★★</div>
+          <p>Περάσαμε δύο βράδια στο διαμέρισμα και μείναμε πολύ ευχαριστημένοι! Ο χώρος είναι καινούργιος, καθαρός και μοντέρνος, με πολύ ωραίο φωτισμό που κάνει την ατμόσφαιρα ζεστή και χαλαρωτική. Η κουζίνα έχει τα πάντα, το κρεβάτι ήταν άνετο, και γενικά όλα είναι φτιαγμένα με γούστο και προσοχή στη λεπτομέρεια. Μας άρεσε πολύ και το μπάνιο – μεγάλο, καθαρό και πρακτικό με πλυντήριο και στεγνωτήριο. Η τοποθεσία είναι ήσυχη αλλά πολύ κοντά σε μετρό, καταστήματα και καφέ. Ιδανικό για ζευγάρι ή solo ταξίδι. Θα το ξαναπροτιμήσουμε σίγουρα όταν επισκεφτούμε την Αθήνα.</p>
+        </blockquote>
+        <blockquote class="review">
+          <strong>Matina E.</strong>
+          <div class="rating" aria-label="5 αστέρια">★★★★★</div>
+          <p>Είχαμε μια υπέροχη διαμονή. Πολύ καλή τοποθεσία, μπορούσαμε να κινηθούμε εύκολα λόγω του μετρό που είναι δίπλα, πανέμορφη διακόσμηση. Πεντακάθαρο, έχει πολλές παροχές και ευγενέστατος ο οικοδεσπότης! Θα το ξαναπροτιμήσουμε σίγουρα!</p>
+        </blockquote>
+        <blockquote class="review">
+          <strong>MARIOS PAPAGEORGIOU</strong>
+          <div class="rating" aria-label="5 αστέρια">★★★★★</div>
+          <p>Είχαμε μία πολύ ευχάριστη διαμονή! Τα πάντα ήταν δίπλα δεν χρειάστηκε καν να μετακινήσουμε το αυτοκίνητο. Ο ύπνος φανταστικός και το μπάνιο απλά υπέροχο!! Παρόλο που κάτσαμε ένα βράδυ η κουζίνα ήταν πλήρης! Θα το ξαναπροτιμήσουμε!!</p>
+        </blockquote>
+      </div>
+      <div class="reviews-cta">
+        <a class="cta" href="https://hiddenpearldafnis.setmore.com" target="_blank" rel="noopener">
+          Κλείσε Διαμονή
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
       </div>
     </div>
   </section>
