@@ -175,14 +175,7 @@
     @media (min-width: 768px) {
       .nav-panel .nav-cta {display:none}
       .nav > .social {display:none}
-      nav a {
-        color:#fff;
-        transition: transform .25s ease, text-shadow .25s ease;
-        display: inline-block; /* σημαντικό για να δουλέψει σωστά το scale */
-      }
-      nav a:hover {
-        transform: scale(1.12); /* πιο εμφανές zoom */
-        text-shadow: 0 4px 12px rgba(0,0,0,.6); /* πιο έντονη σκιά */
+
       }
     }
     @media (max-width: 767px) {
@@ -278,13 +271,13 @@
   <!-- HEADER -->
   <header>
     <div class="container nav">
-      <div class="logo" aria-label="Λογότυπο Hidden Pearl Dafnis" style="display:flex;align-items:center;gap:12px">
-    <img src="logo/logo5.png" alt="Hidden Pearl Dafnis logo" width="112" height="112" />
-  <div>
-    <strong>Hidden Pearl Dafnis</strong>
-    <span>Boutique Apartment</span>
-  </div>
-</div>
+      <a class="logo" href="/" aria-label="Μετάβαση στην αρχική σελίδα Hidden Pearl Dafnis" style="display:flex;align-items:center;gap:12px">
+        <img src="logo/logo5.png" alt="Hidden Pearl Dafnis logo" width="112" height="112" />
+        <div>
+          <strong>Hidden Pearl Dafnis</strong>
+          <span>Boutique Apartment</span>
+        </div>
+      </a>
 
       <nav aria-label="Κύρια Πλοήγηση">
         <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Άνοιγμα μενού">
@@ -509,13 +502,13 @@
           Τηλέφωνο: <a href="tel:+306979299999">697 929 9999</a>
         </small>
       </div>
-      <div class="logo" aria-label="Λογότυπο Hidden Pearl Dafnis">
+      <a class="logo" href="/" aria-label="Μετάβαση στην αρχική σελίδα Hidden Pearl Dafnis">
         <img src="logo/logo5.png" alt="Hidden Pearl Dafnis logo" width="112" height="112" />
         <div>
           <strong>Hidden Pearl Dafnis</strong>
           <span>Boutique Apartment</span>
         </div>
-      </div>
+      </a>
       <div class="social" aria-label="Κοινωνικά Δίκτυα">
         <a id="facebookLinkFooter" class="icon" href="#" aria-label="Facebook" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
