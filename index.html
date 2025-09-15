@@ -175,6 +175,15 @@
     @media (min-width: 768px) {
       .nav-panel .nav-cta {display:none}
       .nav > .social {display:none}
+      nav a {
+        color:#fff;
+        transition: transform .25s ease, text-shadow .25s ease;
+        display: inline-block; /* σημαντικό για να δουλέψει σωστά το scale */
+      }
+      nav a:hover {
+        transform: scale(1.12); /* πιο εμφανές zoom */
+        text-shadow: 0 4px 12px rgba(0,0,0,.6); /* πιο έντονη σκιά */
+      }
     }
     @media (max-width: 767px) {
       .nav > .social{display:none}
