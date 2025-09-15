@@ -62,6 +62,18 @@
     nav ul{display:flex; gap:18px; list-style:none; padding:0; margin:0}
     nav a{font-weight:600}
     .nav-panel{display:flex; align-items:center; gap:18px}
+    .nav-close{
+      display:none;
+      align-items:center;
+      gap:8px;
+      background:none;
+      border:0;
+      color:inherit;
+      cursor:pointer;
+      font-weight:600;
+      font-size:14px;
+    }
+    .nav-close svg{width:18px; height:18px}
     .nav-backdrop{display:none}
     .nav-cta,.drawer-contact,.drawer-social{display:none}
     .drawer-contact{font-size:14px; line-height:1.5}
@@ -181,6 +193,19 @@
         z-index:1100;
         overflow-y:auto;
       }
+      .nav-close{
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
+        padding:6px 12px;
+        margin-left:auto;
+        margin-bottom:8px;
+        background:rgba(15,23,42,.05);
+        border-radius:999px;
+        border:1px solid rgba(15,23,42,.12);
+      }
+      .nav-close span{font-size:14px}
+      .nav-close:focus{outline:0; box-shadow:0 0 0 3px var(--ring)}
       nav.open .nav-panel{transform:translateX(0)}
       .nav-backdrop{
         display:block;
@@ -259,6 +284,12 @@
         </button>
         <div class="nav-backdrop" aria-hidden="true"></div>
         <div id="mobileMenu" class="nav-panel">
+          <button class="nav-close" type="button" aria-label="Κλείσιμο μενού">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M6 6l12 12M6 18L18 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <span>Κλείσιμο</span>
+          </button>
           <ul class="nav-links">
             <li><a href="#about">Περιγραφή καταλύματος</a></li>
             <li><a href="#gallery">Gallery</a></li>
@@ -551,6 +582,7 @@
     const drawer=nav.querySelector('.nav-panel');
     const overlay=nav.querySelector('.nav-backdrop');
     const links=drawer ? drawer.querySelectorAll('a') : nav.querySelectorAll('a');
+    const closeBtn=nav.querySelector('.nav-close');
     const body=document.body;
     function closeMenu(){
       if(!nav.classList.contains('open')) return;
@@ -564,6 +596,7 @@
       btn.setAttribute('aria-expanded','true');
       btn.setAttribute('aria-label','Κλείσιμο μενού');
       body.classList.add('no-scroll');
+      closeBtn?.focus();
     }
     btn.addEventListener('click',()=>{
       if(nav.classList.contains('open')){
@@ -572,6 +605,7 @@
         openMenu();
       }
     });
+    closeBtn?.addEventListener('click',closeMenu);
     overlay?.addEventListener('click',closeMenu);
     links.forEach(link=>link.addEventListener('click',closeMenu));
     document.addEventListener('click',e=>{
