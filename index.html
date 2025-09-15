@@ -160,6 +160,10 @@
     footer .social{flex:1; justify-content:flex-end}
 
     /* Responsive */
+    @media (min-width: 768px) {
+      .nav-panel .nav-cta {display:none}
+      .nav > .social {display:none}
+    }
     @media (max-width: 767px) {
       .nav > .social{display:none}
       .menu-btn{display:inline-flex; align-items:center; justify-content:center; padding:4px}
