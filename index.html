@@ -250,10 +250,44 @@
       summary{font-weight:700; cursor:pointer}
       details[open]{outline:none}
 
-      /* Reviews */
-      .reviews{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
-      .review{background:var(--card); padding:18px; border-radius:16px; box-shadow:var(--shadow)}
-      .review .rating{color:#fbbf24; margin:4px 0}
+      /* Testimonials Carousel */
+      .testimonials-carousel{
+        display:flex;
+        gap:18px;
+        overflow-x:auto;
+        padding:12px clamp(8px, 4vw, 24px) 24px;
+        margin:0 calc(-1 * clamp(8px, 4vw, 24px));
+        scroll-snap-type:x mandatory;
+        scroll-padding-inline:clamp(8px, 4vw, 24px);
+        -webkit-overflow-scrolling:touch;
+        scrollbar-width:thin;
+        scrollbar-color:rgba(15,23,42,.2) transparent;
+      }
+      .testimonials-carousel::-webkit-scrollbar{height:8px}
+      .testimonials-carousel::-webkit-scrollbar-track{background:transparent}
+      .testimonials-carousel::-webkit-scrollbar-thumb{background:rgba(15,23,42,.18); border-radius:999px}
+      .testimonial-card{
+        flex:0 0 clamp(260px, 70vw, 340px);
+        background:var(--card);
+        border-radius:18px;
+        box-shadow:var(--shadow);
+        padding:22px;
+        display:flex;
+        flex-direction:column;
+        gap:14px;
+        scroll-snap-align:center;
+        scroll-snap-stop:always;
+        transform:scale(1);
+        transition:transform .35s ease, box-shadow .35s ease;
+      }
+      .testimonial-card blockquote{margin:0; color:var(--text); line-height:1.65}
+      .testimonial-meta{display:flex; flex-direction:column; gap:6px}
+      .testimonial-name{font-weight:700; color:var(--text)}
+      .testimonial-rating{color:#fbbf24; font-size:18px; letter-spacing:2px}
+      .testimonial-card.is-active{
+        transform:scale(1.05);
+        box-shadow:0 20px 40px rgba(15,23,42,.18);
+      }
       .reviews-cta{text-align:center; margin-top:24px}
 
       /* Map */
@@ -450,9 +484,7 @@
       .features {
         grid-template-columns: 1fr;
       }
-      .reviews {
-        grid-template-columns: 1fr;
-      }
+      .testimonials-carousel{margin-inline:-16px; padding-inline:16px}
       body.no-scroll{overflow:hidden}
     }
     </style>
@@ -680,22 +712,28 @@
   <section id="reviews" aria-labelledby="reviewsTitle">
     <div class="container">
       <h2 id="reviewsTitle" class="section-title">Κριτικές Πελατών</h2>
-      <div class="reviews">
-        <blockquote class="review">
-          <strong>Tzeni M.</strong>
-          <div class="rating" aria-label="5 αστέρια">★★★★★</div>
-          <p>Όμορφο, καθαρό , δίπλα σε σταθμό μετρό και σε μέσα μαζικής μεταφοράς, εύκολα προσβάσιμο και στο κέντρο της πόλης και προς παραλία! Ευχαριστούμε για την αξέχαστη διαμονή!</p>
-        </blockquote>
-        <blockquote class="review">
-          <strong>Matina E.</strong>
-          <div class="rating" aria-label="5 αστέρια">★★★★★</div>
-          <p>Είχαμε μια υπέροχη διαμονή. Πολύ καλή τοποθεσία, μπορούσαμε να κινηθούμε εύκολα λόγω του μετρό που είναι δίπλα, πανέμορφη διακόσμηση. Πεντακάθαρο, έχει πολλές παροχές και ευγενέστατος ο οικοδεσπότης! Θα το ξαναπροτιμήσουμε σίγουρα!</p>
-        </blockquote>
-        <blockquote class="review">
-          <strong>Marios P.</strong>
-          <div class="rating" aria-label="5 αστέρια">★★★★★</div>
-          <p>Είχαμε μία πολύ ευχάριστη διαμονή! Τα πάντα ήταν δίπλα δεν χρειάστηκε καν να μετακινήσουμε το αυτοκίνητο. Ο ύπνος φανταστικός και το μπάνιο απλά υπέροχο!! Παρόλο που κάτσαμε ένα βράδυ η κουζίνα ήταν πλήρης! Θα το ξαναπροτιμήσουμε!!</p>
-        </blockquote>
+      <div class="testimonials-carousel" role="list">
+        <figure class="testimonial-card" role="listitem">
+          <blockquote>Όμορφο, καθαρό , δίπλα σε σταθμό μετρό και σε μέσα μαζικής μεταφοράς, εύκολα προσβάσιμο και στο κέντρο της πόλης και προς παραλία! Ευχαριστούμε για την αξέχαστη διαμονή!</blockquote>
+          <figcaption class="testimonial-meta">
+            <strong class="testimonial-name">Tzeni M.</strong>
+            <span class="testimonial-rating" aria-label="5 αστέρια">★★★★★</span>
+          </figcaption>
+        </figure>
+        <figure class="testimonial-card" role="listitem">
+          <blockquote>Είχαμε μια υπέροχη διαμονή. Πολύ καλή τοποθεσία, μπορούσαμε να κινηθούμε εύκολα λόγω του μετρό που είναι δίπλα, πανέμορφη διακόσμηση. Πεντακάθαρο, έχει πολλές παροχές και ευγενέστατος ο οικοδεσπότης! Θα το ξαναπροτιμήσουμε σίγουρα!</blockquote>
+          <figcaption class="testimonial-meta">
+            <strong class="testimonial-name">Matina E.</strong>
+            <span class="testimonial-rating" aria-label="5 αστέρια">★★★★★</span>
+          </figcaption>
+        </figure>
+        <figure class="testimonial-card" role="listitem">
+          <blockquote>Είχαμε μία πολύ ευχάριστη διαμονή! Τα πάντα ήταν δίπλα δεν χρειάστηκε καν να μετακινήσουμε το αυτοκίνητο. Ο ύπνος φανταστικός και το μπάνιο απλά υπέροχο!! Παρόλο που κάτσαμε ένα βράδυ η κουζίνα ήταν πλήρης! Θα το ξαναπροτιμήσουμε!!</blockquote>
+          <figcaption class="testimonial-meta">
+            <strong class="testimonial-name">Marios P.</strong>
+            <span class="testimonial-rating" aria-label="5 αστέρια">★★★★★</span>
+          </figcaption>
+        </figure>
       </div>
       <div class="reviews-cta">
         <a class="cta" href="https://hiddenpearldafnis.setmore.com" target="_blank" rel="noopener">
@@ -811,6 +849,36 @@
     }
     prev.addEventListener('click',()=>goToSlide(index-1));
     next.addEventListener('click',()=>goToSlide(index+1));
+  })();
+  (function(){
+    const carousel=document.querySelector('.testimonials-carousel');
+    if(!carousel) return;
+    const cards=Array.from(carousel.querySelectorAll('.testimonial-card'));
+    if(!cards.length) return;
+    let ticking=false;
+    function updateActive(){
+      const center=carousel.scrollLeft + carousel.offsetWidth/2;
+      let active=cards[0];
+      let min=Number.POSITIVE_INFINITY;
+      cards.forEach(card=>{
+        const cardCenter=card.offsetLeft + card.offsetWidth/2;
+        const distance=Math.abs(center-cardCenter);
+        if(distance<min){
+          min=distance;
+          active=card;
+        }
+      });
+      cards.forEach(card=>card.classList.toggle('is-active', card===active));
+      ticking=false;
+    }
+    function requestUpdate(){
+      if(ticking) return;
+      ticking=true;
+      window.requestAnimationFrame(updateActive);
+    }
+    carousel.addEventListener('scroll', requestUpdate, {passive:true});
+    window.addEventListener('resize', requestUpdate);
+    updateActive();
   })();
   (function(){
     const fb=document.getElementById('facebookLink');
