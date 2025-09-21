@@ -129,7 +129,7 @@
     }
     .hero-popup{
       position:absolute;
-      top: clamp(120px, 22vh, 240px);
+
       left: clamp(16px, 5vw, 64px);
       max-width:min(360px, calc(100% - 32px));
       padding:18px 44px 18px 18px;
@@ -144,18 +144,7 @@
       transition:opacity .4s ease, transform .4s ease;
       z-index:2;
     }
-    .hero-popup::after{
-      content:"";
-      position:absolute;
-      bottom:-14px;
-      left:40px;
-      width:0;
-      height:0;
-      border-width:14px 12px 0 12px;
-      border-style:solid;
-      border-color:#ffffff transparent transparent transparent;
-      filter: drop-shadow(0 6px 8px rgba(15,23,42,.18));
-    }
+
     .hero-popup.show{opacity:1; transform:translateY(0);}
     .hero-popup.hide{opacity:0; transform:translateY(-12px); pointer-events:none;}
     .hero-popup button{
@@ -202,6 +191,10 @@
     .feature:focus-within{transform:translateY(-6px); box-shadow:0 18px 40px rgba(0,0,0,.12)}
     .feature b{display:block; margin-bottom:6px}
     .feature .feature-icon{position:absolute; top:18px; right:18px; width:48px; height:48px; object-fit:contain; pointer-events:none}
+    .general-info{margin-top:24px; background:var(--card); padding:20px; border-radius:16px; box-shadow:var(--shadow); line-height:1.6}
+    .general-info h3{margin:0 0 12px; font-size:20px}
+    .general-info p{margin:0 0 12px; color:var(--muted)}
+    .general-info p:last-child{margin-bottom:0}
 
     /* Gallery - Carousel */
     .gallery-carousel{position:relative}
@@ -462,6 +455,20 @@
           πόρτα ασφαλείας με ηλεκτρονική κλειδαριά που κλειδώνει αυτόματα, πυροσβεστήρας, κιτ πρώτων βοηθειών και σαφείς
           οδηγίες εκκένωσης για την ασφάλεια κάθε επισκέπτη.
         </div>
+      </div>
+      <div class="general-info">
+        <h3>Γενικές πληροφορίες</h3>
+        <p>
+          Ο χρόνος της διαδρομής με τα πόδια και με το αυτοκίνητο βασίζεται στην πιο γρήγορη διαδρομή από το κατάλυμα. Όταν δεν
+          υπάρχει διαθέσιμη διαδρομή, οι αποστάσεις υπολογίζονται σε ευθεία γραμμή. Ο πραγματικός χρόνος διαδρομής και οι αποστάσεις
+          ενδέχεται να διαφέρουν.
+        </p>
+        <p>
+          Παρακαλείστε να ενημερώσετε το Hidden Pearl Dafnis Boutique Apartment εκ των προτέρων σχετικά με την αναμενόμενη ώρα
+          άφιξής σας. Μπορείτε για την κράτησή σας να επικοινωνήσετε απευθείας με το κατάλυμα μέσω email, στα στοιχεία επικοινωνίας
+          που αναγράφονται στη σελίδα μας.
+        </p>
+        <p>Αυτό το κατάλυμα δεν φιλοξενεί μπάτσελορ ή αντίστοιχα πάρτι κ συγκεντρώσεις ατόμων.</p>
       </div>
     </div>
   </section>
