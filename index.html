@@ -244,6 +244,82 @@
         text-shadow: 0 6px 18px rgba(0,0,0,.35);
       }
     }
+    .contact-widget{
+      position:fixed;
+      right:clamp(16px, 3vw, 32px);
+      bottom:clamp(16px, 3vw, 32px);
+      display:flex;
+      flex-direction:column;
+      align-items:flex-end;
+      gap:12px;
+      z-index:1300;
+    }
+    .contact-widget__toggle{
+      width:58px;
+      height:58px;
+      border-radius:999px;
+      border:0;
+      background:var(--brand, #43D9D7);
+      color:#fff;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      box-shadow:0 14px 32px rgba(15,23,42,.24);
+      transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+    }
+    .contact-widget__toggle:hover{
+      transform:translateY(-3px);
+      box-shadow:0 18px 38px rgba(15,23,42,.24);
+    }
+    .contact-widget__toggle:focus-visible{
+      outline:0;
+      box-shadow:0 0 0 3px var(--ring), 0 14px 32px rgba(15,23,42,.24);
+    }
+    .contact-widget__panel{
+      background:#fff;
+      color:var(--text);
+      border-radius:16px;
+      padding:14px 18px;
+      min-width:220px;
+      box-shadow:0 16px 32px rgba(15,23,42,.18);
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      opacity:0;
+      transform:translateY(10px) scale(.98);
+      visibility:hidden;
+      pointer-events:none;
+      transition:opacity .25s ease, transform .25s ease, visibility .25s ease;
+    }
+    .contact-widget__panel.is-open{
+      opacity:1;
+      transform:translateY(0) scale(1);
+      visibility:visible;
+      pointer-events:auto;
+    }
+    .contact-widget__link{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:10px;
+      border-radius:12px;
+      font-weight:600;
+      color:inherit;
+      transition:background .2s ease, transform .2s ease;
+    }
+    .contact-widget__link:hover{
+      background:rgba(67,217,215,.08);
+      transform:translateX(-2px);
+    }
+    .contact-widget__link:focus-visible{
+      outline:0;
+      box-shadow:0 0 0 3px var(--ring);
+    }
+    .contact-widget__icon{
+      font-size:18px;
+      line-height:1;
+    }
     @media (max-width: 767px) {
       .nav > .social{display:none}
       .menu-btn{display:inline-flex; align-items:center; justify-content:center; padding:4px}
@@ -573,6 +649,25 @@
     </div>
   </section>
 
+  <div class="contact-widget" aria-label="Γρήγορη επικοινωνία">
+    <div id="contactWidgetPanel" class="contact-widget__panel" aria-hidden="true">
+      <a class="contact-widget__link" href="mailto:hiddenpearldafnis@gmail.com">
+        <span class="contact-widget__icon" aria-hidden="true">📧</span>
+        <span>Email</span>
+      </a>
+      <a class="contact-widget__link" href="viber://chat?number=+306979299999">
+        <span class="contact-widget__icon" aria-hidden="true">📞</span>
+        <span>Viber</span>
+      </a>
+    </div>
+    <button class="contact-widget__toggle" type="button" aria-expanded="false" aria-controls="contactWidgetPanel" aria-label="Άνοιγμα επιλογών επικοινωνίας">
+      <svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none">
+        <path d="M12 3C7.03 3 3 6.58 3 11c0 2.35 1.16 4.47 3 5.96V21l3.07-1.64c.96.27 1.99.42 3.08.42 4.97 0 9-3.58 9-8s-4.03-8-9-8Zm-.14 11.91h-.02c-.31 0-.6-.03-.88-.08-.76.52-1.6.95-2.49 1.26.47-.69.76-1.32.88-1.94-1.11-.74-1.81-1.82-1.81-3.05 0-2.22 2.09-4.02 4.67-4.02s4.67 1.8 4.67 4.02-2.09 4.03-4.66 4.03Z" fill="currentColor"/>
+      </svg>
+      <span class="visually-hidden">Contact</span>
+    </button>
+  </div>
+
   <!-- MAP -->
   <section id="map" aria-labelledby="mapTitle">
     <div class="container">
@@ -731,6 +826,33 @@
         popup.classList.add('show');
       }
     },1000);
+  })();
+  (function(){
+    const widget=document.querySelector('.contact-widget');
+    if(!widget) return;
+    const toggle=widget.querySelector('.contact-widget__toggle');
+    const panel=widget.querySelector('.contact-widget__panel');
+    if(!toggle||!panel) return;
+    function setState(open){
+      toggle.setAttribute('aria-expanded', String(open));
+      panel.classList.toggle('is-open', open);
+      panel.setAttribute('aria-hidden', String(!open));
+      toggle.setAttribute('aria-label', open ? 'Κλείσιμο επιλογών επικοινωνίας' : 'Άνοιγμα επιλογών επικοινωνίας');
+    }
+    toggle.addEventListener('click',()=>{
+      const isOpen=panel.classList.contains('is-open');
+      setState(!isOpen);
+    });
+    document.addEventListener('click',event=>{
+      if(!panel.classList.contains('is-open')) return;
+      if(widget.contains(event.target)) return;
+      setState(false);
+    });
+    document.addEventListener('keydown',event=>{
+      if(event.key==='Escape'){
+        setState(false);
+      }
+    });
   })();
 </script>
 </html>
