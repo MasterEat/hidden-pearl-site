@@ -827,32 +827,6 @@
       }
     },1000);
   })();
-  (function(){
-    const widget=document.querySelector('.contact-widget');
-    if(!widget) return;
-    const toggle=widget.querySelector('.contact-widget__toggle');
-    const panel=widget.querySelector('.contact-widget__panel');
-    if(!toggle||!panel) return;
-    function setState(open){
-      toggle.setAttribute('aria-expanded', String(open));
-      panel.classList.toggle('is-open', open);
-      panel.setAttribute('aria-hidden', String(!open));
-      toggle.setAttribute('aria-label', open ? 'Κλείσιμο επιλογών επικοινωνίας' : 'Άνοιγμα επιλογών επικοινωνίας');
-    }
-    toggle.addEventListener('click',()=>{
-      const isOpen=panel.classList.contains('is-open');
-      setState(!isOpen);
-    });
-    document.addEventListener('click',event=>{
-      if(!panel.classList.contains('is-open')) return;
-      if(widget.contains(event.target)) return;
-      setState(false);
-    });
-    document.addEventListener('keydown',event=>{
-      if(event.key==='Escape'){
-        setState(false);
-      }
-    });
-  })();
+
 </script>
 </html>
