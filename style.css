@@ -2,7 +2,7 @@
   --drawer-width: 300px;
   --drawer-bg: #fff;
   --accent: #43D9D7;
-  --overlay-bg: rgba(0, 0, 0, 0.1);
+  --overlay-bg: rgba(0, 0, 0, 0.5);
 }
 
 body {
