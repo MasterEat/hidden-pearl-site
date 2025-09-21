@@ -300,9 +300,12 @@
     }
     .contact-widget__link{
       display:flex;
+      flex-direction:column;
       align-items:center;
-      gap:10px;
-      padding:10px;
+      justify-content:center;
+      text-align:center;
+      gap:8px;
+      padding:12px;
       border-radius:12px;
       font-weight:600;
       color:inherit;
@@ -317,8 +320,16 @@
       box-shadow:0 0 0 3px var(--ring);
     }
     .contact-widget__icon{
-      font-size:18px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:36px;
+      height:36px;
       line-height:1;
+    }
+    .contact-widget__icon img{
+      width:100%;
+      height:100%;
     }
     @media (max-width: 767px) {
       .nav > .social{display:none}
@@ -652,11 +663,15 @@
   <div class="contact-widget" aria-label="Γρήγορη επικοινωνία">
     <div id="contactWidgetPanel" class="contact-widget__panel" aria-hidden="true">
       <a class="contact-widget__link" href="mailto:hiddenpearldafnis@gmail.com">
-        <span class="contact-widget__icon" aria-hidden="true">📧</span>
+        <span class="contact-widget__icon" aria-hidden="true">
+          <img src="SVG/email.svg" width="36" height="36" alt="" loading="lazy" />
+        </span>
         <span>Email</span>
       </a>
       <a class="contact-widget__link" href="viber://chat?number=+306979299999">
-        <span class="contact-widget__icon" aria-hidden="true">📞</span>
+        <span class="contact-widget__icon" aria-hidden="true">
+          <img src="SVG/viber.svg" width="36" height="36" alt="" loading="lazy" />
+        </span>
         <span>Viber</span>
       </a>
     </div>
