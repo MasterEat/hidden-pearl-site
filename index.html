@@ -129,7 +129,7 @@
     }
     .hero-popup{
       position:absolute;
-      top: clamp(24px, 8vw, 64px);
+
       left: clamp(16px, 5vw, 64px);
       max-width:min(360px, calc(100% - 32px));
       padding:18px 44px 18px 18px;
@@ -144,6 +144,7 @@
       transition:opacity .4s ease, transform .4s ease;
       z-index:2;
     }
+
     .hero-popup.show{opacity:1; transform:translateY(0);}
     .hero-popup.hide{opacity:0; transform:translateY(-12px); pointer-events:none;}
     .hero-popup button{
