@@ -181,10 +181,12 @@
     .feature:focus-within{transform:translateY(-6px); box-shadow:0 18px 40px rgba(0,0,0,.12)}
     .feature b{display:block; margin-bottom:6px}
     .feature .feature-icon{position:absolute; top:18px; right:18px; width:48px; height:48px; object-fit:contain; pointer-events:none}
-    .general-info{margin-top:24px; background:var(--card); padding:20px; border-radius:16px; box-shadow:var(--shadow); line-height:1.6}
+    .general-info{margin-top:24px; background:var(--card); padding:20px; border-radius:16px; box-shadow:var(--shadow); line-height:1.6; transition: transform .3s ease, box-shadow .3s ease}
     .general-info h3{margin:0 0 12px; font-size:20px}
     .general-info p{margin:0 0 12px; color:var(--muted)}
     .general-info p:last-child{margin-bottom:0}
+    .general-info:hover,
+    .general-info:focus-within{transform:translateY(-6px); box-shadow:0 18px 40px rgba(0,0,0,.12)}
 
     /* Gallery - Carousel */
     .gallery-carousel{position:relative}
