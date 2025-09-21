@@ -127,6 +127,51 @@
       background:url("images/hiddenpearl1.jpg") center/cover no-repeat;
       color:#fff;
     }
+    .hero-popup{
+      position:absolute;
+      top: clamp(140px, 18vh, 240px);
+      left: clamp(20px, 6vw, 80px);
+      max-width:min(420px, calc(100% - 32px));
+      padding:20px 52px 20px 22px;
+      background:#ffffff;
+      color:var(--text);
+      border-radius:24px;
+      box-shadow:0 18px 36px rgba(15,23,42,.16);
+      line-height:1.6;
+      font-size:15px;
+      word-break:break-word;
+      opacity:0;
+      transform:translateY(-12px);
+      transition:opacity .4s ease, transform .4s ease;
+      z-index:2;
+    }
+    .hero-popup::after{
+      content:"";
+      position:absolute;
+      bottom:-16px;
+      left:48px;
+      width:0;
+      height:0;
+      border-width:16px 14px 0 14px;
+      border-style:solid;
+      border-color:#ffffff transparent transparent transparent;
+      filter: drop-shadow(0 8px 12px rgba(15,23,42,.18));
+    }
+    .hero-popup.show{opacity:1; transform:translateY(0);}
+    .hero-popup.hide{opacity:0; transform:translateY(-12px); pointer-events:none;}
+    .hero-popup button{
+      position:absolute;
+      top:10px;
+      right:10px;
+      border:0;
+      background:transparent;
+      color:var(--muted);
+      font-size:18px;
+      line-height:1;
+      cursor:pointer;
+      padding:4px;
+    }
+    .hero-popup button:focus{outline:none; box-shadow:0 0 0 3px var(--ring); border-radius:8px;}
     .hero::before{
       content:"";
       position:absolute;
@@ -376,6 +421,10 @@
 
   <!-- HERO -->
   <main id="home" class="hero">
+    <aside class="hero-popup" role="status" aria-live="polite">
+      Παρακαλώ για τις κρατήσεις σας ενημερώστε μας με email αναλυτικά για τις ημερομηνίες άφιξης και αναχώρησης για να ενημερώσουμε για την διαθεσιμότητα.
+      <button type="button" class="hero-popup-close" aria-label="Κλείσιμο ειδοποίησης">&times;</button>
+    </aside>
     <div class="hero-content container">
       <h1>Ένα «κρυφό μαργαριτάρι» στην Αθήνα</h1>
       <p>Μοντέρνο, φωτεινό διαμέρισμα με προσεγμένο design, ιδανικό για ζευγάρια ή solo ταξιδιώτες. Μερικά βήματα από συγκοινωνίες, καφέ και αγορές.</p>
@@ -668,6 +717,24 @@
     window.addEventListener('resize',()=>{
       if(window.innerWidth>=768) closeMenu();
     });
+  })();
+  (function(){
+    const popup=document.querySelector('.hero-popup');
+    const closeBtn=popup?.querySelector('.hero-popup-close');
+    if(!popup||!closeBtn) return;
+    function hidePopup(){
+      popup.classList.remove('show');
+      popup.classList.add('hide');
+    }
+    closeBtn.addEventListener('click',()=>{
+      hidePopup();
+      popup.addEventListener('transitionend',()=>{popup.style.display='none';},{once:true});
+    });
+    setTimeout(()=>{
+      if(!popup.classList.contains('hide')){
+        popup.classList.add('show');
+      }
+    },1000);
   })();
 </script>
 </html>
