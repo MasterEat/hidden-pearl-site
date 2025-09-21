@@ -45,6 +45,17 @@
       color:var(--text); background: var(--bg);
     }
     a{color:inherit; text-decoration:none}
+    .visually-hidden{
+      position:absolute !important;
+      width:1px;
+      height:1px;
+      padding:0;
+      margin:-1px;
+      overflow:hidden;
+      clip:rect(0,0,0,0);
+      white-space:nowrap;
+      border:0;
+    }
     .container{max-width:1120px; margin-inline:auto; padding: 0 20px}
     header{
       position: fixed;
@@ -287,6 +298,9 @@
     </style>
 </head>
 <body>
+  <h1 class="visually-hidden">Hidden Pearl Dafnis – Airbnb Διαμέρισμα στην Αθήνα</h1>
+  <h2 class="visually-hidden">Μοντέρνο boutique apartment κοντά στο μετρό Δάφνη</h2>
+  <h2 class="visually-hidden">Ενοικιαζόμενο διαμέρισμα στην Αθήνα για ζευγάρια &amp; επαγγελματίες</h2>
   <!-- HEADER -->
   <header>
     <div class="container nav">
