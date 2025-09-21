@@ -196,6 +196,25 @@
       max-width:640px;
       margin-top: clamp(72px, 9vw, 112px);
     }
+    .hero-content h1{
+      margin:0 0 16px 0;
+      text-shadow:0 6px 18px rgba(0,0,0,.45);
+    }
+    .hero-title-line{
+      display:block;
+      white-space:normal;
+    }
+    .hero-title-line--secondary{
+      font-size:0.85em;
+      color:#6b7280;
+    }
+
+    @media (min-width:768px){
+      .hero-title-line{
+        display:block;
+        white-space:nowrap;
+      }
+    }
 
     .cta{display:inline-flex; align-items:center; gap:10px; padding:14px 18px; background:var(--brand); color:var(--brand-text); border-radius:12px; box-shadow: var(--shadow); font-weight:700; outline:1px solid transparent; transition: background .2s, color .2s; position:relative; z-index:1}
     .cta:hover{background:var(--bg); color:var(--brand)}
