@@ -3,6 +3,7 @@
   --drawer-bg: #fff;
   --accent: #43D9D7;
   --overlay-bg: rgba(0, 0, 0, 0.5);
+  --toast-bg: rgba(255, 255, 255, 0.85); /* Transparency can be tuned by editing --toast-bg (e.g., .85 -> .3). */
 }
 
 body {
