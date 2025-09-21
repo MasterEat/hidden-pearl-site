@@ -244,11 +244,12 @@
 
     /* Features */
     .features{display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:16px}
-    .feature{background:var(--card); padding:18px 18px 18px 18px; padding-right:70px; border-radius:16px; box-shadow: var(--shadow); transition: transform .3s ease, box-shadow .3s ease; position:relative}
+    .feature{background:var(--card); padding:18px 56px 18px 18px; border-radius:16px; box-shadow: var(--shadow); transition: transform .3s ease, box-shadow .3s ease; position:relative}
     .feature:hover,
     .feature:focus-within{transform:translateY(-6px); box-shadow:0 18px 40px rgba(0,0,0,.12)}
-    .feature b{display:block; margin:0 0 2em}
-    .feature .feat-icon{position:absolute; top:14px; right:14px; width:34px; height:34px; object-fit:contain; pointer-events:none; color: var(--brand); display:block; margin:0;}
+    .feature b{display:block; margin:0 0 8px}
+    .feature .feat-icon{position:absolute; top:14px; right:14px; width:32px; height:32px; display:block; pointer-events:none !important; color: var(--brand); float:none !important; margin:0 !important; object-fit:contain;}
+    .feature p, .feature div{max-width:none !important;}
     .general-info{margin-top:24px; background:var(--card); padding:20px; border-radius:16px; box-shadow:var(--shadow); line-height:1.6; transition: transform .3s ease, box-shadow .3s ease; position:relative; padding-right:72px}
     .general-info__icon{display:block; width:40px; height:40px; margin:0; position:absolute; top:20px; right:20px}
     .general-info h3{margin:0 0 12px; font-size:20px; padding-right:48px}
