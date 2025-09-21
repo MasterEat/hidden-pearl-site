@@ -187,6 +187,7 @@
     @media (max-width: 767px) {
       .nav > .social{display:none}
       .menu-btn{display:inline-flex; align-items:center; justify-content:center; padding:4px}
+      .menu-btn:focus{outline:0; box-shadow:0 0 0 3px var(--ring)}
       .nav-panel{
         position:fixed;
         top:0;
@@ -205,6 +206,18 @@
         z-index:1100;
         overflow-y:auto;
       }
+      nav.open .menu-btn{
+        position:fixed;
+        top:calc(env(safe-area-inset-top, 0) + 18px);
+        right:calc(env(safe-area-inset-right, 0) + 24px);
+        z-index:1200;
+        background:rgba(255,255,255,.95);
+        color:var(--text);
+        padding:8px;
+        border-radius:999px;
+        box-shadow:var(--shadow);
+      }
+      nav.open .menu-btn:focus{box-shadow:0 0 0 3px var(--ring), var(--shadow)}
       .nav-close{
         display:inline-flex;
         align-items:center;
