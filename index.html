@@ -125,8 +125,11 @@
       align-items:center;
       justify-content:center;
       min-height:70vh;
-      background:url("images/hiddenpearl1.jpg") center/cover no-repeat;
+      overflow:hidden;
+      --hero-bg:url("images/hiddenpearl1.jpg");
+      --hero-bg-next:var(--hero-bg);
       color:#fff;
+      background:var(--hero-bg) center/cover no-repeat;
     }
     .hero-toast{
       position:absolute;
@@ -205,10 +208,23 @@
       position:absolute;
       inset:0;
       background:linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.2));
+      z-index:1;
+    }
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:var(--hero-bg-next) center/cover no-repeat;
+      opacity:0;
+      transition:opacity 1s ease;
+      z-index:0;
+    }
+    .hero.is-fading::after{
+      opacity:1;
     }
     .hero-content{
       position:relative;
-      z-index:1;
+      z-index:2;
       text-align:center;
       max-width:640px;
       margin-top: clamp(72px, 9vw, 112px);
@@ -909,19 +925,48 @@
 </body>
   <script>
     (function(){
-      const hero=document.getElementById('heroImage');
+      const hero=document.querySelector('.hero');
       if(!hero) return;
-    const imgs=['images/hiddenpearl1.jpg','images/hiddenpearl2.jpg','images/hiddenpearl3.jpg'];
-    let i=0;
-    setInterval(()=>{
-      hero.style.opacity=0;
-      i=(i+1)%imgs.length;
-      setTimeout(()=>{
-        hero.src=imgs[i];
-        hero.style.opacity=1;
-      },500);
-    },4000);
-  })();
+
+      const images=[
+        'images/hiddenpearl1.jpg',
+        'images/hiddenpearl2.jpg',
+        'images/hiddenpearl3.jpg',
+        'images/hiddenpearl4.jpg',
+        'images/hiddenpearl5.jpg',
+        'images/hiddenpearl6.jpg'
+      ];
+
+      images.forEach(src=>{
+        const img=new Image();
+        img.src=src;
+      });
+
+      let index=0;
+      const transitionDuration=1000;
+      hero.style.setProperty('--hero-bg', `url("${images[index]}")`);
+      hero.style.setProperty('--hero-bg-next', `url("${images[index]}")`);
+
+      let isTransitioning=false;
+      function cycle(){
+        if(isTransitioning) return;
+        const nextIndex=(index+1)%images.length;
+        const nextImage=images[nextIndex];
+        hero.style.setProperty('--hero-bg-next', `url("${nextImage}")`);
+        isTransitioning=true;
+        requestAnimationFrame(()=>{
+          hero.classList.add('is-fading');
+        });
+        setTimeout(()=>{
+          hero.style.setProperty('--hero-bg', `url("${nextImage}")`);
+          hero.classList.remove('is-fading');
+          index=nextIndex;
+          isTransitioning=false;
+        }, transitionDuration);
+      }
+
+      setInterval(cycle, 5000);
+    })();
   (function(){
     const carousel=document.querySelector('#gal');
     if(!carousel) return;
