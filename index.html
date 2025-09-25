@@ -743,10 +743,10 @@
             <img src="gallery/boutique1.jpg" class="gallery-slide__image" alt="Φωτεινό σαλόνι με καναπέ, τηλεόραση και διακόσμηση" loading="eager" fetchpriority="high" decoding="async" />
           </figure>
           <figure class="gallery-slide" role="listitem">
-            <img src="gallery/boutique2.jpg" class="gallery-slide__image" alt="Κομψή κρεβατοκάμαρα με διπλό κρεβάτι και καθρέφτη" loading="eager" fetchpriority="high" decoding="async" />
+            <img src="gallery/boutique2.jpg" class="gallery-slide__image" alt="Κομψή κρεβατοκάμαρα με διπλό κρεβάτι και καθρέφτη" loading="lazy" decoding="async" />
           </figure>
           <figure class="gallery-slide" role="listitem">
-            <img src="gallery/boutique3.jpg" class="gallery-slide__image" alt="Ανοιχτή κουζίνα με τραπεζαρία και σύγχρονες συσκευές" loading="eager" decoding="async" />
+            <img src="gallery/boutique3.jpg" class="gallery-slide__image" alt="Ανοιχτή κουζίνα με τραπεζαρία και σύγχρονες συσκευές" loading="lazy" decoding="async" />
           </figure>
           <figure class="gallery-slide" role="listitem">
             <img src="gallery/boutique4.jpg" class="gallery-slide__image" alt="Άνετο υπνοδωμάτιο με φωτισμό και λειτουργικό χώρο εργασίας" loading="lazy" decoding="async" />
@@ -1012,6 +1012,11 @@
     </div>
   </section>
 
+  <div class="lightbox" id="galleryLightbox" aria-hidden="true" role="dialog" aria-modal="true">
+    <button type="button" class="lb-close" aria-label="Κλείσιμο προβολής">×</button>
+    <img id="galleryLightboxImage" src="" alt="" decoding="async" />
+  </div>
+
   <!-- FOOTER -->
   <footer>
     <div class="container foot">
@@ -1150,6 +1155,62 @@
 
     track.addEventListener('scroll', handleScroll, {passive:true});
     window.addEventListener('resize', handleScroll);
+  })();
+  (function(){
+    const images=Array.from(document.querySelectorAll('.gallery-slide__image'));
+    const lightbox=document.getElementById('galleryLightbox');
+    if(!images.length||!lightbox) return;
+    const lightboxImage=lightbox.querySelector('#galleryLightboxImage');
+    const closeBtn=lightbox.querySelector('.lb-close');
+    if(!lightboxImage||!closeBtn) return;
+
+    let previouslyFocused=null;
+
+    function onKeyDown(event){
+      if(event.key==='Escape'){
+        closeLightbox();
+      }else if(event.key==='Tab'){
+        event.preventDefault();
+        closeBtn.focus();
+      }
+    }
+
+    function openLightbox(image){
+      const source=image.currentSrc||image.src;
+      lightboxImage.src=source;
+      lightboxImage.alt=image.alt||'';
+      previouslyFocused=document.activeElement instanceof HTMLElement ? document.activeElement : null;
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden','false');
+      closeBtn.focus();
+      document.addEventListener('keydown', onKeyDown);
+    }
+
+    function closeLightbox(){
+      if(!lightbox.classList.contains('open')) return;
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden','true');
+      lightboxImage.removeAttribute('src');
+      lightboxImage.alt='';
+      document.removeEventListener('keydown', onKeyDown);
+      if(previouslyFocused&&typeof previouslyFocused.focus==='function'){
+        previouslyFocused.focus();
+      }
+      previouslyFocused=null;
+    }
+
+    images.forEach(image=>{
+      image.addEventListener('click',()=>{
+        openLightbox(image);
+      });
+    });
+
+    closeBtn.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click',event=>{
+      if(event.target===lightbox){
+        closeLightbox();
+      }
+    });
   })();
   (function(){
     const carousel=document.querySelector('.testimonials-carousel');
