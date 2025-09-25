@@ -124,18 +124,12 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      aspect-ratio: 4 / 3;
-      padding-block: clamp(64px, 10vw, 120px);
+      min-height:70vh;
       overflow:hidden;
       --hero-bg:url("images/hiddenpearl1.jpg");
       --hero-bg-next:var(--hero-bg);
       color:#fff;
-      background:var(--hero-bg) center/contain no-repeat;
-    }
-    @supports not (aspect-ratio: 1) {
-      .hero{
-        min-height:70vh;
-      }
+      background:var(--hero-bg) center/cover no-repeat;
     }
     .hero-toast{
       position:absolute;
@@ -220,7 +214,7 @@
       content:"";
       position:absolute;
       inset:0;
-      background:var(--hero-bg-next) center/contain no-repeat;
+      background:var(--hero-bg-next) center/cover no-repeat;
       opacity:0;
       transition:opacity 1s ease;
       z-index:0;
