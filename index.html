@@ -340,8 +340,7 @@
     }
 
     /* Lightbox */
-    html.lightbox-open,
-    body.lightbox-open{overflow:hidden; overscroll-behavior:none; height:100%; touch-action:none;}
+
     body.lightbox-open header{opacity:0; visibility:hidden; pointer-events:none;}
     .lightbox{position:fixed; inset:0; background:rgba(0,0,0,.85); display:none; align-items:center; justify-content:center; z-index:100}
     .lightbox.open{display:flex}
@@ -351,13 +350,7 @@
     .lb-btn:hover,.lb-btn:focus{background:#ffffff; transform:translateY(-1px);}
     .lb-btn:focus-visible{outline:0; box-shadow:0 0 0 3px rgba(67,217,215,.35);}
     .lb-close{position:absolute; top:16px; right:16px; background:#fff; border:0; border-radius:999px; padding:8px 12px; cursor:pointer; font-weight:800; box-shadow:0 8px 18px rgba(15,23,42,.2);}
-    @media (max-width:640px){
-      .lightbox{padding:0 12px;}
-      .lightbox img{max-width:100%; max-height:70vh;}
-      .lb-controls{padding:0;}
-      .lb-btn{padding:12px; font-size:20px;}
-      .lb-close{top:calc(env(safe-area-inset-top, 0) + 10px); right:calc(env(safe-area-inset-right, 0) + 10px);}
-    }
+
 
       /* FAQs */
       .faqs{display:grid; grid-template-columns:1fr; gap:12px}
@@ -1238,7 +1231,7 @@
       closeBtn.focus();
       document.addEventListener('keydown', onKeyDown);
       document.body.classList.add('lightbox-open');
-      document.documentElement.classList.add('lightbox-open');
+
     }
 
     function closeLightbox(){
@@ -1250,7 +1243,7 @@
       currentIndex=-1;
       document.removeEventListener('keydown', onKeyDown);
       document.body.classList.remove('lightbox-open');
-      document.documentElement.classList.remove('lightbox-open');
+
       if(previouslyFocused&&typeof previouslyFocused.focus==='function'){
         previouslyFocused.focus();
       }
