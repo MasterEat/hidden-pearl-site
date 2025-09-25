@@ -340,12 +340,16 @@
     }
 
     /* Lightbox */
+    body.lightbox-open{overflow:hidden;}
+    body.lightbox-open header{opacity:0; visibility:hidden; pointer-events:none;}
     .lightbox{position:fixed; inset:0; background:rgba(0,0,0,.85); display:none; align-items:center; justify-content:center; z-index:100}
     .lightbox.open{display:flex}
     .lightbox img{max-width:92vw; max-height:84vh; border-radius:12px; box-shadow:var(--shadow)}
-    .lb-controls{position:absolute; inset-inline:0; top:50%; transform:translateY(-50%); display:flex; justify-content:space-between; padding:0 24px}
-    .lb-btn{background:#ffffff; border:0; border-radius:999px; padding:10px 14px; cursor:pointer; font-weight:800}
-    .lb-close{position:absolute; top:16px; right:16px; background:#fff; border:0; border-radius:999px; padding:8px 12px; cursor:pointer; font-weight:800}
+    .lb-controls{position:absolute; inset-inline:0; top:50%; transform:translateY(-50%); display:flex; justify-content:space-between; padding:0 24px; pointer-events:none;}
+    .lb-btn{background:rgba(255,255,255,.8); color:#0f172a; border:0; border-radius:999px; padding:10px 14px; cursor:pointer; font-weight:700; box-shadow:0 12px 24px rgba(15,23,42,.22); transition:background .2s ease, transform .2s ease; pointer-events:auto;}
+    .lb-btn:hover,.lb-btn:focus{background:#ffffff; transform:translateY(-1px);}
+    .lb-btn:focus-visible{outline:0; box-shadow:0 0 0 3px rgba(67,217,215,.35);}
+    .lb-close{position:absolute; top:16px; right:16px; background:#fff; border:0; border-radius:999px; padding:8px 12px; cursor:pointer; font-weight:800; box-shadow:0 8px 18px rgba(15,23,42,.2);}
 
       /* FAQs */
       .faqs{display:grid; grid-template-columns:1fr; gap:12px}
@@ -1014,6 +1018,10 @@
 
   <div class="lightbox" id="galleryLightbox" aria-hidden="true" role="dialog" aria-modal="true">
     <button type="button" class="lb-close" aria-label="Κλείσιμο προβολής">×</button>
+    <div class="lb-controls">
+      <button type="button" class="lb-btn lb-prev" aria-label="Προηγούμενη φωτογραφία">‹</button>
+      <button type="button" class="lb-btn lb-next" aria-label="Επόμενη φωτογραφία">›</button>
+    </div>
     <img id="galleryLightboxImage" src="" alt="" decoding="async" />
   </div>
 
@@ -1162,28 +1170,66 @@
     if(!images.length||!lightbox) return;
     const lightboxImage=lightbox.querySelector('#galleryLightboxImage');
     const closeBtn=lightbox.querySelector('.lb-close');
-    if(!lightboxImage||!closeBtn) return;
+    const prevBtn=lightbox.querySelector('.lb-prev');
+    const nextBtn=lightbox.querySelector('.lb-next');
+    if(!lightboxImage||!closeBtn||!prevBtn||!nextBtn) return;
 
     let previouslyFocused=null;
+    let currentIndex=-1;
+    const focusable=[closeBtn, prevBtn, nextBtn];
+
+    function showImage(index){
+      const targetImage=images[index];
+      if(!targetImage) return;
+      currentIndex=index;
+      const source=targetImage.currentSrc||targetImage.src;
+      lightboxImage.src=source;
+      lightboxImage.alt=targetImage.alt||'';
+    }
+
+    function showNext(){
+      if(!images.length) return;
+      const nextIndex=(currentIndex+1+images.length)%images.length;
+      showImage(nextIndex);
+    }
+
+    function showPrevious(){
+      if(!images.length) return;
+      const nextIndex=(currentIndex-1+images.length)%images.length;
+      showImage(nextIndex);
+    }
 
     function onKeyDown(event){
       if(event.key==='Escape'){
         closeLightbox();
       }else if(event.key==='Tab'){
         event.preventDefault();
-        closeBtn.focus();
+        if(!focusable.length) return;
+        const active=document.activeElement;
+        let index=focusable.indexOf(active);
+        if(index===-1){
+          focusable[event.shiftKey ? focusable.length-1 : 0].focus();
+          return;
+        }
+        index=(index + (event.shiftKey ? -1 : 1) + focusable.length)%focusable.length;
+        focusable[index].focus();
+      }else if(event.key==='ArrowRight'){
+        event.preventDefault();
+        showNext();
+      }else if(event.key==='ArrowLeft'){
+        event.preventDefault();
+        showPrevious();
       }
     }
 
-    function openLightbox(image){
-      const source=image.currentSrc||image.src;
-      lightboxImage.src=source;
-      lightboxImage.alt=image.alt||'';
+    function openLightbox(image,index){
+      showImage(index);
       previouslyFocused=document.activeElement instanceof HTMLElement ? document.activeElement : null;
       lightbox.classList.add('open');
       lightbox.setAttribute('aria-hidden','false');
       closeBtn.focus();
       document.addEventListener('keydown', onKeyDown);
+      document.body.classList.add('lightbox-open');
     }
 
     function closeLightbox(){
@@ -1192,20 +1238,30 @@
       lightbox.setAttribute('aria-hidden','true');
       lightboxImage.removeAttribute('src');
       lightboxImage.alt='';
+      currentIndex=-1;
       document.removeEventListener('keydown', onKeyDown);
+      document.body.classList.remove('lightbox-open');
       if(previouslyFocused&&typeof previouslyFocused.focus==='function'){
         previouslyFocused.focus();
       }
       previouslyFocused=null;
     }
 
-    images.forEach(image=>{
+    images.forEach((image,index)=>{
       image.addEventListener('click',()=>{
-        openLightbox(image);
+        openLightbox(image,index);
       });
     });
 
     closeBtn.addEventListener('click', closeLightbox);
+    nextBtn.addEventListener('click',event=>{
+      event.stopPropagation();
+      showNext();
+    });
+    prevBtn.addEventListener('click',event=>{
+      event.stopPropagation();
+      showPrevious();
+    });
     lightbox.addEventListener('click',event=>{
       if(event.target===lightbox){
         closeLightbox();
