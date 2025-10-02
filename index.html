@@ -406,6 +406,12 @@
     footer{background: var(--brand); color: var(--brand-text); padding: 36px 0; margin-top:56px}
     .foot{display:flex; gap:16px; align-items:center; justify-content:space-between; flex-wrap:wrap}
     .foot small{opacity:.8}
+    .brand-block{display:flex; flex-direction:column; align-items:center; text-align:center; gap:12px}
+    .legal-links{display:flex; align-items:center; gap:12px; font-size:14px; font-weight:600}
+    .legal-links a{color:var(--brand-text); opacity:.9}
+    .legal-links a:hover,
+    .legal-links a:focus{opacity:1; text-decoration:underline}
+    .legal-links span{opacity:.6}
     footer .contact{flex:1}
     footer .logo{margin-inline:auto; display:flex; align-items:center; gap:12px; text-align:center}
     footer .social{flex:1; justify-content:flex-end}
@@ -1036,13 +1042,20 @@
           Τηλέφωνο: <a href="tel:+306979299999">697 929 9999</a>
         </small>
       </div>
-      <a class="logo" href="/" aria-label="Μετάβαση στην αρχική σελίδα Hidden Pearl Dafnis">
-        <img src="logo/logo5.png" alt="Hidden Pearl Dafnis logo" width="112" height="112" />
-        <div>
-          <strong>Hidden Pearl Dafnis</strong>
-          <span>Boutique Apartment</span>
-        </div>
-      </a>
+      <div class="brand-block">
+        <a class="logo" href="/" aria-label="Μετάβαση στην αρχική σελίδα Hidden Pearl Dafnis">
+          <img src="logo/logo5.png" alt="Hidden Pearl Dafnis logo" width="112" height="112" />
+          <div>
+            <strong>Hidden Pearl Dafnis</strong>
+            <span>Boutique Apartment</span>
+          </div>
+        </a>
+        <nav class="legal-links" aria-label="Νομικές πληροφορίες">
+          <a href="/terms.html">Όροι &amp; Προϋποθέσεις</a>
+          <span aria-hidden="true">|</span>
+          <a href="/privacy.html">Πολιτική Απορρήτου</a>
+        </nav>
+      </div>
       <div class="social" aria-label="Κοινωνικά Δίκτυα">
         <a id="facebookLinkFooter" class="icon" href="#" aria-label="Facebook" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
