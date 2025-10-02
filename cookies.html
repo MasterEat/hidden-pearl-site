@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="el">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Πολιτική Cookies | Hidden Pearl Dafnis</title>
+  <meta name="description" content="Μάθετε πώς χρησιμοποιούμε cookies στον ιστότοπο Hidden Pearl Dafnis και πώς μπορείτε να διαχειριστείτε τις προτιμήσεις σας." />
+  <meta name="robots" content="noindex, follow" />
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#d9d9d9;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --brand:#43D9D7;
+      --brand-text:#ffffff;
+      --card:#ffffff;
+      --btn:#1f2937;
+      --btn-text:#ffffff;
+      --shadow:0 10px 30px rgba(15,23,42,.18);
+    }
+    *{box-sizing:border-box;}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      display:flex;
+      flex-direction:column;
+      min-height:100vh;
+    }
+    a{color:inherit;}
+    a:hover,a:focus{color:inherit;}
+    .policy-header{
+      background:var(--brand);
+      color:var(--brand-text);
+      padding:24px 0;
+      box-shadow:0 6px 20px rgba(15,23,42,.1);
+    }
+    .policy-container{
+      width:100%;
+      max-width:960px;
+      margin:0 auto;
+      padding:0 24px;
+    }
+    .policy-header__inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      gap:12px;
+    }
+    .policy-logo{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:700;
+      text-decoration:none;
+      color:inherit;
+    }
+    .policy-logo span{
+      display:block;
+      font-size:14px;
+      opacity:.85;
+    }
+    .policy-back{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      background:rgba(255,255,255,.15);
+      color:var(--brand-text);
+      padding:10px 18px;
+      border-radius:999px;
+      font-weight:600;
+      text-decoration:none;
+      transition:background .2s ease, transform .2s ease;
+    }
+    .policy-back:hover,
+    .policy-back:focus{
+      background:rgba(255,255,255,.25);
+      transform:translateY(-1px);
+    }
+    main{
+      flex:1;
+      padding:48px 0 64px;
+    }
+    .policy-content{
+      background:var(--card);
+      padding:40px 32px;
+      border-radius:24px;
+      box-shadow:var(--shadow);
+    }
+    h1{
+      margin-top:0;
+      margin-bottom:24px;
+      font-size:2rem;
+    }
+    h2{
+      margin-top:32px;
+      margin-bottom:12px;
+      font-size:1.4rem;
+    }
+    p{
+      margin:0 0 16px;
+      line-height:1.65;
+    }
+    ul{
+      margin:0 0 16px 20px;
+      padding:0;
+      line-height:1.6;
+    }
+    li{margin-bottom:8px;}
+    .policy-contact{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+    .policy-footer{
+      background:var(--brand);
+      color:var(--brand-text);
+      padding:32px 0;
+    }
+    .policy-footer small{
+      display:block;
+      line-height:1.6;
+    }
+    .policy-footer a{
+      color:inherit;
+      text-decoration:underline;
+    }
+    .cookie-banner{
+      position:fixed;
+      bottom:20px;
+      left:16px;
+      right:16px;
+      z-index:1100;
+      background:var(--card);
+      color:var(--text);
+      padding:20px 24px;
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+      max-width:min(640px, 100%);
+      margin-inline:auto;
+      transition:opacity .3s ease, transform .3s ease, visibility .3s ease;
+    }
+    .cookie-banner--hidden{
+      opacity:0;
+      visibility:hidden;
+      transform:translateY(20px);
+      pointer-events:none;
+    }
+    .cookie-banner__text{
+      margin:0;
+      font-size:15px;
+      line-height:1.6;
+    }
+    .cookie-banner__text a{
+      color:inherit;
+      text-decoration:underline;
+    }
+    .cookie-banner__actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      align-items:center;
+    }
+    .cookie-banner__button{
+      background:var(--btn);
+      color:var(--btn-text);
+      border:none;
+      border-radius:999px;
+      padding:10px 24px;
+      font-weight:600;
+      cursor:pointer;
+      transition:background .2s ease, transform .2s ease;
+    }
+    .cookie-banner__button:hover,
+    .cookie-banner__button:focus{
+      transform:translateY(-1px);
+    }
+    .cookie-banner__button:focus-visible{
+      outline:2px solid var(--brand);
+      outline-offset:2px;
+    }
+    .cookie-banner__link{
+      font-weight:600;
+      text-decoration:underline;
+      color:var(--text);
+    }
+    .cookie-banner__link:focus-visible{
+      outline:2px solid var(--brand);
+      outline-offset:2px;
+    }
+    @media (min-width: 768px){
+      main{padding:64px 0 96px;}
+      .cookie-banner{
+        left:auto;
+        margin:0;
+        right:20px;
+        max-width:380px;
+      }
+    }
+    @media (max-width: 640px){
+      .policy-content{
+        padding:32px 20px;
+      }
+    }
+    @media (prefers-reduced-motion: reduce){
+      .policy-back,
+      .cookie-banner{
+        transition:none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="policy-header">
+    <div class="policy-container policy-header__inner">
+      <a class="policy-logo" href="/">
+        <img src="/logo/logo5.png" alt="Λογότυπο Hidden Pearl Dafnis" width="64" height="64" />
+        <div>
+          <strong>Hidden Pearl Dafnis</strong>
+          <span>Boutique Apartment</span>
+        </div>
+      </a>
+      <a class="policy-back" href="/" aria-label="Επιστροφή στην αρχική">
+        <span aria-hidden="true">&#8592;</span>
+        Επιστροφή στην αρχική
+      </a>
+    </div>
+  </header>
+  <main>
+    <div class="policy-container">
+      <article class="policy-content">
+        <h1>Πολιτική Cookies</h1>
+        <section>
+          <h2>1. Τι είναι τα cookies</h2>
+          <p>Τα cookies είναι μικρά αρχεία κειμένου που αποθηκεύονται στον browser σας όταν επισκέπτεστε έναν ιστότοπο. Χρησιμοποιούνται για να θυμούνται τις προτιμήσεις σας και να βελτιώνουν την εμπειρία πλοήγησης.</p>
+        </section>
+        <section>
+          <h2>2. Τι είδους cookies χρησιμοποιούμε</h2>
+          <ul>
+            <li><strong>Απαραίτητα cookies:</strong> Απαραίτητα για τη βασική λειτουργία του ιστότοπου (π.χ. ασφάλεια, φόρμες επικοινωνίας).</li>
+            <li><strong>Cookies απόδοσης (analytics):</strong> Μπορεί να χρησιμοποιηθούν για στατιστικά στοιχεία σχετικά με την επισκεψιμότητα (π.χ. Google Analytics). Τα δεδομένα είναι ανώνυμα.</li>
+            <li><strong>Cookies λειτουργικότητας:</strong> Θυμούνται επιλογές σας (π.χ. γλώσσα).</li>
+          </ul>
+        </section>
+        <section>
+          <h2>3. Πώς χρησιμοποιούμε τα cookies</h2>
+          <ul>
+            <li>Για να διασφαλίσουμε την ομαλή λειτουργία της ιστοσελίδας.</li>
+            <li>Για ανώνυμη στατιστική ανάλυση και βελτίωση περιεχομένου.</li>
+            <li>Δεν χρησιμοποιούμε cookies για εξατομικευμένη διαφήμιση χωρίς τη ρητή σας συγκατάθεση.</li>
+          </ul>
+        </section>
+        <section>
+          <h2>4. Διαχείριση Cookies</h2>
+          <p>Μπορείτε ανά πάσα στιγμή να ρυθμίσετε ή να απενεργοποιήσετε τα cookies μέσω των ρυθμίσεων του browser σας. Σημειώστε ότι η απενεργοποίηση ενδέχεται να περιορίσει τη λειτουργικότητα της ιστοσελίδας.</p>
+        </section>
+        <section>
+          <h2>5. Συναίνεση</h2>
+          <p>Με την πρώτη σας επίσκεψη εμφανίζεται banner για την αποδοχή ή διαχείριση των cookies. Με την αποδοχή συμφωνείτε με την Πολιτική Cookies.</p>
+        </section>
+        <section>
+          <h2>6. Επικοινωνία</h2>
+          <div class="policy-contact">
+            <p>Για περισσότερες πληροφορίες σχετικά με τα cookies, μπορείτε να επικοινωνήσετε στο:</p>
+            <p>
+              📧 <a href="mailto:hiddenpearldafnis@gmail.com">hiddenpearldafnis@gmail.com</a><br />
+              ☎ <a href="tel:+306979299999">+30 697 929 9999</a>
+            </p>
+          </div>
+        </section>
+      </article>
+    </div>
+  </main>
+  <footer class="policy-footer">
+    <div class="policy-container">
+      <small>
+        Διεύθυνση: Γυμναστηρίου 26, Δάφνη Αττικής 172 35<br />
+        Email: <a href="mailto:hiddenpearldafnis@gmail.com">hiddenpearldafnis@gmail.com</a><br />
+        Τηλέφωνο: <a href="tel:+306979299999">697 929 9999</a>
+      </small>
+    </div>
+  </footer>
+
+  <div class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Ειδοποίηση για cookies">
+    <p class="cookie-banner__text">
+      Χρησιμοποιούμε cookies για να εξασφαλίσουμε την καλύτερη εμπειρία στον ιστότοπό μας. Με τη συνέχιση της πλοήγησης αποδέχεστε τη χρήση cookies σύμφωνα με την Πολιτική Cookies μας.
+    </p>
+    <div class="cookie-banner__actions">
+      <button type="button" class="cookie-banner__button" data-cookie-accept>Αποδοχή</button>
+      <a class="cookie-banner__link" href="/cookies.html">Περισσότερα</a>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const banner=document.getElementById('cookieBanner');
+      if(!banner) return;
+      const acceptBtn=banner.querySelector('[data-cookie-accept]');
+      const storageKey='hp-cookie-consent';
+
+      try{
+        if(window.localStorage && localStorage.getItem(storageKey)==='accepted'){
+          banner.remove();
+          return;
+        }
+      }catch(error){
+        // Αν το localStorage δεν είναι διαθέσιμο, συνεχίζουμε χωρίς αποθήκευση.
+      }
+
+      function hideBanner(){
+        banner.classList.add('cookie-banner--hidden');
+        banner.addEventListener('transitionend',()=>{
+          banner.remove();
+        },{once:true});
+      }
+
+      if(acceptBtn){
+        acceptBtn.addEventListener('click',()=>{
+          try{
+            if(window.localStorage){
+              localStorage.setItem(storageKey,'accepted');
+            }
+          }catch(error){
+            // Αγνοούμε σφάλματα αποθήκευσης.
+          }
+          hideBanner();
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
